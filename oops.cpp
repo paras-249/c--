@@ -107,7 +107,7 @@ int main(){
 
 
     return 0;
-}*/
+}
 
 // deep copy (dynamic alloaction of the memory ie heap memory)
 class Student{
@@ -128,6 +128,13 @@ Student(Student &obj){
     *cgpaptr=*obj.cgpaptr; // pont toward new mem
 }
 
+//Destructor
+
+~Student(){
+    cout<<"hy, I delete every thing"<<endl;
+    delete cgpaptr;
+}
+
     void getInfo(){
         cout<<"name :"<<name<<endl;
         cout<<"cgpa :"<<*cgpaptr<<endl;
@@ -137,15 +144,265 @@ Student(Student &obj){
 
 int main(){
    Student s1("paras",12);
-   Student s2(s1);//"jayy kumar "
+   //Student s2(s1);//"jayy kumar "
    s1.getInfo();
    // dereferncing  , cgpa allocation ie s2 has diff cgpa
-   *(s2.cgpaptr)=9.3; //problem in shallow it change the  ptr which you dont change  , in this we want to change the s2 cgpa but s1 cgpa is alsp change
+//    *(s2.cgpaptr)=9.3; //problem in shallow it change the  ptr which you dont change  , in this we want to change the s2 cgpa but s1 cgpa is alsp change
 
-   s2.name="jay kumar";
-   s2.getInfo();
+//    s2.name="jay kumar";
+//    s2.getInfo();
 
 
+
+    return 0;
+}*/
+
+// Inheritance 
+
+
+//Single level
+/*
+class Person{
+    public:
+    string name;
+    int age;
+
+    //user constructor parrametric constructor;
+    Person(string name,int age){
+        this-> name=name;
+        this->age=age;
+    }
+
+//     Person(){
+//  cout<<" parent Constructer run 1st"<<endl;
+//     }
+    // ~Person(){
+    //     cout<<" Parents Destructor"<<endl;
+    // }
+};
+
+class Student : public Person{
+    public:
+    int rollno;
+     //Person paraetic construcotr ko Student constructor ke pehle call karaye by : classname and paaramter
+    Student(string name,int age,int rollno) : Person(  name, age){  
+        //cout<<" Child Constructer run 2nd"<<endl;
+        this -> rollno=rollno;
+    }
+    // ~Student(){
+    //     cout<<" Child Destructor"<<endl;
+    // }
+
+    void getInfo(){
+        cout<<"name: "<<name<<endl;
+        cout<<"age: "<< age<< endl;
+        cout<<"rollno: "<< rollno<<  endl;
+    }
+};
+
+
+class Person{
+    public:
+    string name;
+    int age;
+};
+// class Student:public Person{
+//     public:
+//     int rollno;
+//};
+ 
+
+//mutlipule inheritance
+
+class Student{
+     public:
+     string name;
+     int rollno;
+};
+
+class Teacher{
+    public:
+    string subject;
+    int salary;
+};
+
+class TA: public Student,public Teacher{
+    
+};
+
+//mutli level
+class GradeStudent:public Student{
+    public:
+    string gradeArea;
+};
+
+
+//hierachical
+class Person{
+     public:
+     string name;
+     int rollno;
+};
+class  Student{
+    public:
+    int rollno;
+};
+
+class Teacher{
+ public:
+ string subject;
+}
+int main(){
+   // Student s1("paras",67,1862);
+    //s1.name="paras";
+   // s1.age=21;
+    //s1.rollno=39;
+
+   GradeStudent s1;
+        s1.name="paras";
+   s1.age=21;
+    s1.rollno=39;
+    s1.gradeArea="Cyber Security";
+
+
+TA t1;
+t1.name="paaras";
+t1.subject="Computer";
+    cout<<t1.name<<endl;
+    cout<<t1.subject<<endl;
+
+   // s1.getInfo();
+
+
+    return 0;
+}
+
+
+//Polymorphism
+
+class Print{
+    public:
+
+
+    //overloading
+    void show(int x){
+        cout<<" int :"<< x<< endl;
+
+    }
+     void show(string  ch){
+        cout<<" string :"<< ch<< endl;
+        
+    }
+};
+
+
+
+//overriding
+class Parents{
+    public:
+    void getInfo(){
+        cout<<" parent class"<<endl;
+
+    }
+
+    //virtual function
+    virtual  void hello(){
+        cout<<" hello from parent"<<endl;
+
+    }
+};
+class Child :public Parents{
+    public:
+    void getInfo(){
+        cout<<" Child class"<<endl;
+
+    }
+    //redefine of virtual function
+     void hello(){
+        cout<<" hello from child"<<endl;
+        
+    }
+};
+
+
+
+//Abstarction
+
+class Shape{ //abstract class
+    virtual void area()=0;//pure virtual function
+};
+
+class Circle: public Shape{
+    public:
+    void area(){
+        cout<<" area of circle\n"<<endl;
+    }
+};
+
+
+
+//Static keyword
+
+// void fun(){
+//     static int x=0;//initalization of static keyword - 1 time run only
+//     cout<<" the x= "<<x<<endl;
+//     x++;
+// }
+class A{
+    public:
+    int x;
+
+
+    void incX(){
+        x=x+1;
+    }
+
+};*/
+
+//static object
+
+class ABC{
+    public:
+
+    ABC(){
+        cout<<"Consturctor\n";
+    }
+   ~ ABC(){
+        cout<<"Destuctore\n";
+    }
+};
+
+int main(){
+
+//     Print s1;
+//     //s1.show(101);//compile time poly.
+//  s1.show("abc");
+
+
+// if The obj of child waas created then its functions has more privoriy i.e. its override the function of Parent
+// Child c1;
+// c1.hello();
+// c1.getInfo();
+
+// Circle a;
+// a.area();
+
+// fun();
+// fun();
+// fun();
+
+// A obj;
+// A obj2;
+// obj.x=0;
+// obj2.x=10;
+// cout<<obj2.x<<endl;
+// obj.incX();
+// cout<<obj.x<<endl;
+
+if(true){
+    static ABC obj;
+}
+cout<<" end of main fnx \n";
 
     return 0;
 }
