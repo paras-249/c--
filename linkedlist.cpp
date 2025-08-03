@@ -72,6 +72,44 @@ class List{
         delete tail;
     }
 
+
+
+    void insert(int val,int pos){
+        if(pos<0){
+            cout<<" Invaldi LL\n";
+            return;
+        }
+        if (pos == 0){
+            push_front(val);
+            return;
+        }
+            Node * temp=head;
+            for(int i=0;i<pos-1;i++){
+                if(temp==NULL){
+                    cout<<"invalid pos \n";
+                    return;
+                }
+                temp=temp->next;
+            }
+            Node * newNode=new Node(val);
+            newNode ->next=temp->next;
+            temp ->next=newNode;
+        
+    }
+
+    int search(int key){
+        Node * temp=head;
+        int idx=0;
+
+        while(temp !=NULL){
+            if(temp ->data==key){
+                return idx;
+            }
+            temp=temp ->next;
+            idx++;
+        }
+        return -1;
+    }
     void printLL(){
         Node* temp=head;
 
@@ -90,19 +128,23 @@ int main(){
  ll.push_front(1); 
  ll.push_front(2); 
  ll.push_front(3); 
- ll.push_front(4); 
+ //ll.push_front(4); 
 
 
- ll.push_back(5);
+// ll.push_back(5);
 
- ll.pop_front();
- 
+// ll.pop_front();
+ ll.printLL();
 
+
+ cout<<ll.search(3)<<endl;
+ ll.insert(5,0);
 
  ll.printLL();
- ll.pop_back();
+ cout<<ll.search(3)<<endl;
+ //ll.pop_back();
 
- ll.printLL();
+// ll.printLL();
 
     return 0;
 
